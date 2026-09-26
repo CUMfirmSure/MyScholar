@@ -103,7 +103,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const fired = useRef(new Set<string>());
 
   useEffect(() => {
-    saveState(state);
+    const id = window.setTimeout(() => saveState(state), 300);
+    return () => window.clearTimeout(id);
   }, [state]);
 
   useEffect(() => {
